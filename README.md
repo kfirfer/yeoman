@@ -11,10 +11,15 @@
     ```
 
 
-# Use the generator created before
+### Use the generator created before
 Create some test folder, and run the generator:
 ```bash
 mkdir test && cd test
 yo testgen:app
 ```
 You should see this console output: `create pom.xml`
+
+
+### How to debug in WebStorm
+Follow this debug configuration:  
+![debug](attachments/debug.png)
