@@ -1,7 +1,7 @@
 {
   "name": "generator-testgen",
   "version": "1.0.0",
-  "description": "",
+  "description": "Yeoman sample",
   "keywords": [
     "yeoman-generator"
   ],
@@ -9,7 +9,8 @@
     "generators"
   ],
   "author": "",
-  "license": "ISC",
+  "license": "UNLICENSED",
+  "private": true,
   "dependencies": {
     "yeoman-generator": "^4.3.0"
   }

@@ -7,7 +7,6 @@
 1) git clone
 2) Open terminal on this project and run:
     ```bash
-    cd generator-testgen/
     npm link
     ```
 
@@ -16,6 +15,6 @@
 Create some test folder, and run the generator:
 ```bash
 mkdir test && cd test
-yo testgen
+yo testgen:app
 ```
 You should see this console output: `create pom.xml`

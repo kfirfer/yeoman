@@ -32,5 +32,9 @@ out/
 .vscode/
 
 
-# NPM
+### NPM ###
 node_modules/
+
+
+### Custom ###
+test/
