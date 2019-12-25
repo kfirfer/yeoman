@@ -12,18 +12,5 @@ module.exports = {
             message: 'Please write artifactId',
             default: "helloworld"
         }
-    ],
-    dirsToCreate: ['src/main/java', 'src/test/java'],
-    filesToCopy: [
-        {
-            input: '.gitignore',
-            output: '.gitignore'
-        }
-    ],
-    filesToRender: [
-        {
-            input: 'pom.xml',
-            output: 'pom.xml'
-        }
     ]
 };

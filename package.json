@@ -1,6 +1,6 @@
 {
   "name": "generator-testgen",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Yeoman sample",
   "keywords": [
     "yeoman-generator"
@@ -12,6 +12,8 @@
   "license": "UNLICENSED",
   "private": true,
   "dependencies": {
-    "yeoman-generator": "^4.3.0"
+    "yeoman-generator": "^4.3.0",
+    "yeoman-option-or-prompt": "^2.0.1",
+    "mkdirp": "0.5.1"
   }
 }

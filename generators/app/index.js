@@ -1,13 +1,18 @@
-var Generator = require('yeoman-generator');
-const config = require('./config');
+let Generator = require('yeoman-generator');
+const dirsToCreate = require('./config/dirs_to_create');
+const filesToCopy = require('./config/files_to_copy');
+const filesToRender = require('./config/files_to_render');
+const prompt = require('./config/prompts');
 const mkdirp = require('mkdirp');
 
 module.exports = class extends Generator {
 
     constructor(args, opts) {
         super(args, opts);
-        for (let optionName in config.options) {
-            this.option(optionName, config.options[optionName])
+        var pjson = require('../../package.json');
+        this.log("version " + pjson.version);
+        for (let optionName in prompt.options) {
+            this.option(optionName, prompt.options[optionName])
         }
     }
 
@@ -17,27 +22,20 @@ module.exports = class extends Generator {
             return;
         }
 
-        return this.prompt(config.prompts).then(answers => {
-            this.groupId = answers.groupId;
-            this.artifactId = answers.artifactId;
+        return this.prompt(prompt.prompts).then(answers => {
+            this.answers = answers;
         });
     }
 
     writing() {
-        this.groupId = this.groupId !== undefined ? this.groupId : this.options["groupId"];
-        this.artifactId = this.artifactId !== undefined ? this.artifactId : this.options["artifactId"];
-
-        const templateData = {
-            groupId: this.groupId,
-            artifactId: this.artifactId
-        };
+        const templateData = this.options["skip-prompt"] !== undefined ? this.options : this.answers;
 
         const copy = (input, output) => {
             this.fs.copy(this.templatePath(input), this.destinationPath(output));
         };
 
-        // Create extra directories
-        config.dirsToCreate.forEach(item => {
+        this.log("Create extra directories");
+        dirsToCreate.dirsToCreate.forEach(item => {
             mkdirp(item);
         });
 
@@ -49,13 +47,13 @@ module.exports = class extends Generator {
             );
         };
 
-        // Render Files
-        config.filesToRender.forEach(file => {
+        this.log("Render Files");
+        filesToRender.filesToRender.forEach(file => {
             copyTpl(file.input, file.output, templateData);
         });
 
-        // Copy files
-        config.filesToCopy.forEach(file => {
+        this.log("Copy files");
+        filesToCopy.filesToCopy.forEach(file => {
             copy(file.input, file.output);
         });
     }
